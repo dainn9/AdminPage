@@ -8,7 +8,7 @@ import {
   TargerCustomer,
 } from "./Interface";
 
-export const BASE_URL = "http://localhost:5254/api";
+export const BASE_URL = "https://team7api-v1-0-0.onrender.com/api";
 
 export const ProductList = async (
   subcategoryId: number,
@@ -274,17 +274,14 @@ export const changePassword = async (
     confirmNewPassword,
   };
 
-  const response = await fetch(
-    "http://localhost:5254/api/account/change-password",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(payload),
-    }
-  );
+  const response = await fetch(`${BASE_URL}/account/change-password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
 
   if (!response.ok) {
     const errorData = await response.json();
